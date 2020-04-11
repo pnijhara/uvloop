@@ -36,7 +36,8 @@ async def _wait_for_data(self, func_name):
         raise RuntimeError('%s() called while another coroutine is '
                            'already waiting for incoming data' % func_name)
 
-    assert not self._eof, '_wait_for_data after EOF'
+    if self._eof:
+        raise AssertionError('_wait_for_data after EOF')
 
     # Waiting for data while paused will make deadlock, so prevent it.
     if self._paused:
