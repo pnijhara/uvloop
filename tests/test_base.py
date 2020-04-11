@@ -553,7 +553,7 @@ class _TestBase:
             return g['waiter']
 
     def test_shutdown_asyncgens_01(self):
-        finalized = list()
+        finalized = []
 
         if not hasattr(self.loop, 'shutdown_asyncgens'):
             raise unittest.SkipTest()
